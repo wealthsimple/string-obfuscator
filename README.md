@@ -2,22 +2,25 @@
 
 Ruby utility for obfuscating strings, with no dependencies.
 
-Example usage (default settings):
+Example usage - obfuscating by length from the right:
 
 ```ruby
-StringObfuscator.obfuscate_by_percent("Hello? It's me, Danilo", percent: 50)
-=> "*********** me, Danilo"
+StringObfuscator.obfuscate("Hello? It's me, Danilo", length: 6, from: :right)
+=> "Hello? It's me, ******"
 ```
 
-Example usage (with params):
+Example usage - obfuscating by percent, custom obfuscation character:
 
 ```ruby
-StringObfuscator.obfuscate_by_percent("Hello? It's me, Danilo",
-  percent: 25,
-  from: :right,
-  obfuscation_character: "$",
-)
-=> "Hello? It's me, $$$$$$"
+StringObfuscator.obfuscate("Hello? It's me, Danilo", percent: 50, obfuscation_character: "#")
+=> "########### me, Danilo"
+```
+
+Example usage - custom obfuscation value:
+
+```ruby
+StringObfuscator.obfuscate("Hello? It's me, Danilo", percent: 20, obfuscation_value: "[obfuscated]")
+=> "[obfuscated]? It's me, Danilo"
 ```
 
 ## Installation
