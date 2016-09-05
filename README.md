@@ -1,4 +1,4 @@
-# StringObfuscator
+# StringObfuscator [![CircleCI](https://circleci.com/gh/wealthsimple/string-obfuscator.svg?style=svg)](https://circleci.com/gh/wealthsimple/string-obfuscator)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/string-obfuscator`. To experiment with that code, run `bin/console` for an interactive prompt.
 
