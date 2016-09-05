@@ -4,7 +4,7 @@ require "bigdecimal"
 module StringObfuscator
   # Obfuscate as close to 50% of the value as possible, without ever revealing
   # more than 50%.
-  def self.obfuscate_by_percent(value, percent: 50, from: :left, max_unobfuscated_length: nil, obfuscation_character: "*")
+  def self.obfuscate_by_percent(value, percent:, from: :left, max_unobfuscated_length: nil, obfuscation_character: "*")
     raise ArgumentError, "percent must be between 0 - 100" if percent > 100 || percent < 0
     return value unless value.is_a?(String)
 

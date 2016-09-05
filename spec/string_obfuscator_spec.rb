@@ -5,7 +5,7 @@ describe StringObfuscator do
 
   describe ".obfuscate_by_percent" do
     context "with a long value" do
-      subject { described_class.obfuscate_by_percent("Hello? It's me, Danilo") }
+      subject { described_class.obfuscate_by_percent("Hello? It's me, Danilo", percent: 50) }
 
       it "should return >= 50% obfuscated" do
         expect(subject).to eq("*********** me, Danilo")
@@ -29,7 +29,7 @@ describe StringObfuscator do
     end
 
     context "with a long value, and max_unobfuscated_length set" do
-      subject { described_class.obfuscate_by_percent("Hello? It's me, Danilo", max_unobfuscated_length: 4) }
+      subject { described_class.obfuscate_by_percent("Hello? It's me, Danilo", percent: 50, max_unobfuscated_length: 4) }
 
       it "should return >= 50% obfuscated" do
         expect(subject).to eq("******************nilo")
@@ -37,7 +37,7 @@ describe StringObfuscator do
     end
 
     context "with a short value" do
-      subject { described_class.obfuscate_by_percent("Boo")}
+      subject { described_class.obfuscate_by_percent("Boo", percent: 50)}
 
       it "should return >= 50% obfuscated" do
         expect(subject).to eq("**o")
@@ -45,7 +45,7 @@ describe StringObfuscator do
     end
 
     context "with obfuscation_character set" do
-      subject { described_class.obfuscate_by_percent("Hello? It's me, Danilo", obfuscation_character: "$") }
+      subject { described_class.obfuscate_by_percent("Hello? It's me, Danilo", percent: 50, obfuscation_character: "$") }
 
       it "uses the given character to obfuscate" do
         expect(subject).to eq("$$$$$$$$$$$ me, Danilo")
@@ -53,7 +53,7 @@ describe StringObfuscator do
     end
 
     context "with an empty String" do
-      subject { described_class.obfuscate_by_percent("") }
+      subject { described_class.obfuscate_by_percent("", percent: 50) }
 
       it { is_expected.to eq("") }
     end
@@ -72,7 +72,7 @@ describe StringObfuscator do
 
     [123, nil, true].each do |value|
       context "with a non-String value of #{value.to_s}" do
-        subject { described_class.obfuscate_by_percent(value) }
+        subject { described_class.obfuscate_by_percent(value, percent: 50) }
 
         it { is_expected.to eq(value) }
       end

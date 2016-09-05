@@ -5,7 +5,7 @@ Ruby utility for obfuscating strings, with no dependencies.
 Example usage (default settings):
 
 ```ruby
-StringObfuscator.obfuscate_by_percent("Hello? It's me, Danilo")
+StringObfuscator.obfuscate_by_percent("Hello? It's me, Danilo", percent: 50)
 => "*********** me, Danilo"
 ```
 
