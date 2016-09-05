@@ -1,4 +1,4 @@
-# StringObfuscator [![CircleCI](https://circleci.com/gh/wealthsimple/string-obfuscator.svg?style=svg)](https://circleci.com/gh/wealthsimple/string-obfuscator)
+# StringObfuscator [![CircleCI](https://circleci.com/gh/wealthsimple/string-obfuscator.svg?style=svg)](https://circleci.com/gh/wealthsimple/string-obfuscator) [![](https://img.shields.io/gem/v/string-obfuscator.svg)](https://rubygems.org/gems/string-obfuscator)
 
 Ruby utility for obfuscating strings, with no dependencies.
 
