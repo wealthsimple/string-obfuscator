@@ -2,7 +2,7 @@ require "string-obfuscator/version"
 require "bigdecimal"
 
 module StringObfuscator
-  def self.obfuscate(value, percent: nil, length: nil, from: :left, max_unobfuscated_length: nil, obfuscation_character: "*", obfuscation_value: nil)
+  def self.obfuscate(value, percent: nil, length: nil, from: :left, max_unobfuscated_length: nil, min_obfuscated_length: nil, obfuscation_character: "*", obfuscation_value: nil)
     raise ArgumentError, "must specify percent or length to obfuscate by" if percent.nil? && length.nil?
     raise ArgumentError, "percent must be between 0 - 100" if !percent.nil? && (percent > 100 || percent < 0)
     raise ArgumentError, "length must be > 0" if !length.nil? && length < 0
@@ -12,8 +12,10 @@ module StringObfuscator
       percent = BigDecimal.new(percent.to_s)
       obfuscated_length = (value.length * (percent / 100)).ceil
     else
-      obfuscated_length = [value.length, length].min
+      obfuscated_length = length
     end
+    obfuscated_length = [obfuscated_length, min_obfuscated_length].max if min_obfuscated_length
+    obfuscated_length = [obfuscated_length, value.length].min
     visible_length = value.length - obfuscated_length
 
     # If `max_unobfuscated_length` is set, ensure that we don't show more than that.

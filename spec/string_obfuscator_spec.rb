@@ -70,6 +70,14 @@ describe StringObfuscator do
       end
     end
 
+    context "with a short value, and min_obfuscated_length set" do
+      subject { described_class.obfuscate("Hi!", percent: 50, min_obfuscated_length: 4) }
+
+      it "should return everything obfuscated" do
+        expect(subject).to eq("***")
+      end
+    end
+
     context "with length > the length of the value" do
       subject { described_class.obfuscate("Boo", length: 50)}
 

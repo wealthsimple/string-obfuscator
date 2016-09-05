@@ -23,6 +23,13 @@ StringObfuscator.obfuscate("Hello? It's me, Danilo", percent: 20, obfuscation_va
 => "[obfuscated]? It's me, Danilo"
 ```
 
+Example usage - min obfuscated length:
+
+```ruby
+StringObfuscator.obfuscate("Hello world", percent: 25, min_obfuscated_length: 8)
+=> "********rld"
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
