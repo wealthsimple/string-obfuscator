@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Peter Graham"]
   spec.email         = ["peter@wealthsimple.com"]
 
-  spec.summary       = %q{Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.summary       = %q{Ruby utility for obfuscating strings}
+  spec.description   = %q{Ruby utility for obfuscating strings, with no dependencies.}
   spec.homepage      = "https://github.com/wealthsimple/string-obfuscator"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
