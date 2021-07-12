@@ -1,0 +1,11 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: string-obfuscator
+  description: Ruby utility for obfuscating strings.
+  tags:
+    - ruby
+spec:
+  type: library
+  lifecycle: production
