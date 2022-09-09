@@ -26,10 +26,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.12)
+  bundler (~> 2.3)
   rake (~> 10.0)
   rspec (~> 3.0)
   string-obfuscator!
 
 BUNDLED WITH
-   2.3.20
+   2.3.22
