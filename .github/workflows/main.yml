@@ -1,0 +1,54 @@
+---
+name: Pipeline
+on: push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        ruby-version: [2.7.6, 3.2.0]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby ${{ matrix.ruby-version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.ruby-version }}
+      - name: Fetch main branch
+        run: git fetch origin main
+      - name: Lint
+        run: bundle exec rubocop
+      - name: Test
+        run: bundle exec rspec
+
+  # Separate `release` job from `build`, as we only want release to be run once
+  # and not run for each ruby version in the matrix:
+  release:
+    name: Release
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Release the gem
+        run: |
+          mkdir -p ~/.gem
+          cat << EOF > ~/.gem/credentials
+          ---
+          :github: Bearer ${GITHUB_TOKEN}
+          :rubygems_api_key: ${RUBYGEMS_API_KEY}
+          EOF
+          chmod 0600 ~/.gem/credentials
+          git config user.email "noreply@wealthsimple.com"
+          git config user.name "Wolfbot"
+          bundle exec rake release
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
