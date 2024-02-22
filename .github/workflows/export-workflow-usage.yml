@@ -1,0 +1,22 @@
+---
+name: Export Workflow Usage
+
+# This workflow runs on all pushes to the repo so we can test changes and provide
+# fast feedback.
+on:
+  push:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  export_workflow_usage:
+    name: Export Workflow Usage
+    uses: wealthsimple/github-workflows/.github/workflows/export_workflow_usage.yml@export-workflow-usage
+    secrets: inherit
+    with:
+      date: '2023-01-30'
+      s3_bucket: 'dse-hypercube'
+      s3_key_prefix: 'development/github_actions_runtime_data/2023-01-30'
+      overwrite_existing_data: false
