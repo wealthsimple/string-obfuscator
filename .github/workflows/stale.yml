@@ -18,3 +18,4 @@ jobs:
             This issue has been automatically closed because it has had no activity
             for over 90 days. Please re-open if you feel this was done in error.
           exempt-pr-labels: 'dependabot,depfu,dependencies,security'
+          delete-branch: true
